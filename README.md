@@ -1,26 +1,53 @@
 # integrative-genomics-gwas-eqtl-rnaseq
-Integrative genomics case study in R linking GWAS, liver eQTL, and bulk RNA-seq to explore locus-to-gene relationships and disease-associated transcriptional change.
+Reproducible R workflow integrating GWAS, liver eQTL, and RNA-seq for candidate gene prioritization and disease-context interpretation.
 
-# Integrative genomics case study: GWAS, liver eQTL, and bulk RNA-seq
+# Integrative genomics case study: GWAS, liver eQTL, and RNA-seq
 
 ## Overview
 
-This repository contains a reproducible R-based case study integrating:
+This repository presents a reproducible R-based integrative genomics workflow combining:
 
-- GWAS summary statistics
-- liver eQTL data
-- bulk RNA-seq data
+- Genome-wide association study (GWAS) summary statistics
+- Liver eQTL data (GTEx)
+- Bulk RNA-seq data (TCGA-style workflow)
 
-The goal is to explore whether a disease-associated locus can be linked to a candidate gene through regulatory evidence and tissue-level expression changes.
+The objective is to determine whether a disease-associated locus can be linked to a candidate gene via regulatory evidence and whether that gene shows transcriptional changes in the relevant tissue.
 
-## Main workflow
+This project is presented as a portfolio case study demonstrating applied bioinformatics and data integration skills.
 
-1. GWAS quality control and visualization
-2. Identification of significant loci
-3. Regional comparison of GWAS and liver eQTL signals
-4. Colocalisation analysis
-5. Bulk RNA-seq differential expression
-6. Candidate gene expression visualization
+---
+
+## Key question
+
+Can a GWAS locus be connected to a biologically plausible target gene using eQTL evidence, and does that gene show differential expression in disease-relevant tissue?
+
+---
+
+## Workflow
+
+### 1. GWAS quality control and visualization
+- Data cleaning and filtering
+- Manhattan plot
+- QQ plot
+
+### 2. Signal prioritization
+- Genome-wide significant variants
+- Distance-based selection of approximately independent loci
+
+### 3. Regional GWAS–eQTL integration
+- Focus on a lead locus
+- Overlay of GWAS and liver eQTL signals
+- Candidate gene: **PNPLA3**
+
+### 4. Colocalisation analysis
+- Bayesian colocalisation using `coloc`
+- Estimation of posterior probabilities for shared causal variants
+
+### 5. RNA-seq context (optional module)
+- Differential expression analysis (DESeq2-style workflow)
+- Candidate gene expression visualization
+
+---
 
 ## Repository structure
 
@@ -30,10 +57,10 @@ The goal is to explore whether a disease-associated locus can be linked to a can
 ├── .gitignore
 ├── LICENSE
 ├── data/
-│   ├── raw/
-│   └── processed/
+│   ├── raw/          # input files (not tracked)
+│   └── processed/    # intermediate files
 ├── results/
-│   ├── figures/
-│   └── tables/
-├── scripts/
-└── docs/
+│   ├── figures/      # plots and visual outputs
+│   └── tables/       # processed tables
+├── scripts/          # analysis scripts
+└── docs/             # project documentation
